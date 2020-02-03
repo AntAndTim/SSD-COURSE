@@ -1,10 +1,9 @@
 package tech.antandtim.calculation.bean;
 
-import java.math.BigDecimal;
-import lombok.Data;
 import tech.antandtim.calculation.operation.Operation;
 
-@Data
+import java.math.BigDecimal;
+
 public class CalculationBean {
 
     private final BigDecimal firstNumber;
@@ -15,5 +14,22 @@ public class CalculationBean {
         this.firstNumber = firstNumber;
         this.secondNumber = secondNumber;
         this.operation = operation;
+    }
+
+    public BigDecimal getFirstNumber() {
+        return this.firstNumber;
+    }
+
+    public BigDecimal getSecondNumber() {
+        return this.secondNumber;
+    }
+
+    public Operation getOperation() {
+        return this.operation;
+    }
+
+    public String toString() {
+        return "CalculationBean(firstNumber=" + this.getFirstNumber() + ", secondNumber=" + this.getSecondNumber()
+                + ", operation=" + this.getOperation() + ")";
     }
 }

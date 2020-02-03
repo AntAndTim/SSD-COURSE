@@ -35,6 +35,10 @@ public class DataProcessor {
         return Optional.empty();
     }
 
+    /**
+     * Case of incorrect operation is not handled by reason. I think, java.lang.NumberFormatException is pretty much
+     * clear in explaining problem to the user, so I find no reason in implementing my own exceptions.
+     */
     private static String extractOperation(String inputString) {
         var matcher = ALLOWED_PATTERN.matcher(inputString);
         if (matcher.find()) {
