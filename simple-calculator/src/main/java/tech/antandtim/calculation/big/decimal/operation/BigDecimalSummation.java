@@ -1,12 +1,12 @@
-package tech.antandtim.calculation.operation;
+package tech.antandtim.calculation.big.decimal.operation;
 
 import java.math.BigDecimal;
 import java.util.function.BiFunction;
 
-public class Multiplication implements Operation {
+public class BigDecimalSummation extends BigDecimalOperation {
 
     @Override
     public BiFunction<BigDecimal, BigDecimal, BigDecimal> getCalculation() {
-        return BigDecimal::multiply;
+        return BigDecimal::add;
     }
 }

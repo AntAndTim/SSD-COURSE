@@ -1,26 +1,28 @@
-package tech.antandtim;
+package tech.antandtim.processing;
 
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.Scanner;
-import java.util.regex.Pattern;
-import tech.antandtim.calculation.bean.CalculationBean;
-import tech.antandtim.calculation.mapper.OperationMapper;
+import tech.antandtim.calculation.common.bean.CalculationBean;
+import tech.antandtim.calculation.big.decimal.bean.BigDecimalCalculationBean;
+import tech.antandtim.calculation.common.mapper.OperationMapper;
+import tech.antandtim.calculation.big.decimal.mapper.BigDecimalOperationMapper;
 
-public class DataProcessor {
+public class BigDecimalDataProcessor implements DataProcessor<BigDecimal> {
 
-    private static final String ALLOWED_OPERATIONS = "[+\\-/*]";
-    private static final Pattern ALLOWED_PATTERN = Pattern.compile(ALLOWED_OPERATIONS);
+    private static final OperationMapper<BigDecimal> operationMapper = new BigDecimalOperationMapper();
 
-    public static BigDecimal calculate(CalculationBean calculationBean) {
+    @Override
+    public BigDecimal calculate(CalculationBean<BigDecimal> calculationBean) {
         return calculationBean
             .getOperation()
             .getCalculation()
             .apply(calculationBean.getFirstNumber(), calculationBean.getSecondNumber());
     }
 
-    public static Optional<CalculationBean> extract(InputStream inputStream) {
+    @Override
+    public Optional<CalculationBean<BigDecimal>> extract(InputStream inputStream) {
         var scanner = new Scanner(inputStream);
         while (scanner.hasNextLine()) {
             var inputString = scanner.nextLine();
@@ -29,8 +31,8 @@ public class DataProcessor {
                 .split(ALLOWED_OPERATIONS);
             var firstNumber = new BigDecimal(calculationInputs[0]);
             var secondNumber = new BigDecimal(calculationInputs[1]);
-            var operation = OperationMapper.map(extractOperation(inputString));
-            return Optional.of(new CalculationBean(firstNumber, secondNumber, operation));
+            var operation = operationMapper.map(extractOperation(inputString));
+            return Optional.of(new BigDecimalCalculationBean(firstNumber, secondNumber, operation));
         }
         return Optional.empty();
     }
