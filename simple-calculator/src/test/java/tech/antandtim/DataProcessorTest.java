@@ -18,7 +18,7 @@ import tech.antandtim.processing.DataProcessor;
 
 class DataProcessorTest {
 
-    private static final DataProcessor<BigDecimal> DATA_PROCESSOR = new BigDecimalDataProcessor();
+    private static final DataProcessor<BigDecimal> DATA_PROCESSOR = new BigDecimalDataProcessor(null);
 
     private static InputStream produceInputStream(String string) {
         return new ByteArrayInputStream(string.getBytes());
