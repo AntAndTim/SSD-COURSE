@@ -26,30 +26,30 @@ class DataProcessorTest {
 
     @Test
     void calculateDivision() {
-        var calculationBean = new BigDecimalCalculationBean(BigDecimal.valueOf(3), BigDecimal.valueOf(4),
+        var calculationBean = new BigDecimalCalculationBean(BigDecimal.valueOf(3.00), BigDecimal.valueOf(4.00),
                                                             new BigDecimalDivision());
-        assertEquals(DATA_PROCESSOR.calculate(calculationBean), BigDecimal.valueOf(0.75));
+        assertEquals(BigDecimal.valueOf(0.8), DATA_PROCESSOR.calculate(calculationBean));
     }
 
     @Test
     void calculateSummation() {
         var calculationBean = new BigDecimalCalculationBean(BigDecimal.valueOf(3), BigDecimal.valueOf(4),
                                                             new BigDecimalSummation());
-        assertEquals(DATA_PROCESSOR.calculate(calculationBean), BigDecimal.valueOf(7));
+        assertEquals(BigDecimal.valueOf(7), DATA_PROCESSOR.calculate(calculationBean));
     }
 
     @Test
     void calculateMultiplication() {
         var calculationBean = new BigDecimalCalculationBean(BigDecimal.valueOf(3), BigDecimal.valueOf(4),
                                                             new BigDecimalMultiplication());
-        assertEquals(DATA_PROCESSOR.calculate(calculationBean), BigDecimal.valueOf(12));
+        assertEquals(BigDecimal.valueOf(12), DATA_PROCESSOR.calculate(calculationBean));
     }
 
     @Test
     void calculateSubtraction() {
         var calculationBean = new BigDecimalCalculationBean(BigDecimal.valueOf(3), BigDecimal.valueOf(4),
                                                             new BigDecimalSubtraction());
-        assertEquals(DATA_PROCESSOR.calculate(calculationBean), BigDecimal.valueOf(-1));
+        assertEquals(BigDecimal.valueOf(-1), DATA_PROCESSOR.calculate(calculationBean));
     }
 
     //Extraction tests
